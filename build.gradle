@@ -16,14 +16,22 @@ repositories {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact("")
+            artifact("build/libs/my-app-$version"+".jar") {
+                extension "jar"
+            }}
         }
     }
 
     repositories {
+    maven {
+        name 'nexus'
+        url 'http://xx.xx.xx.xx:8081/repository/maven-snapshots/'
 
+        credentials {
+            username = ''
+            password = ''
+        }
     }
-
 }
 
 dependencies {

@@ -4,6 +4,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
+apply plugin: 'maven-publish'
+
 group 'com.example'
 version '1.0-SNAPSHOT'
 
@@ -17,19 +19,19 @@ publishing {
     publications {
         maven(MavenPublication) {
             artifact("build/libs/my-app-$version"+".jar") {
-                extension "jar"
-            }}
+                extension 'jar'
+            }
         }
-    }
-
+    } 
+}
     repositories {
     maven {
         name 'nexus'
-        url 'http://xx.xx.xx.xx:8081/repository/maven-snapshots/'
-
+        url 'http://159.203.21.167:8081/repository/maven-snapshots/'
+        allowInsecureProtocol = true 
         credentials {
-            username = ''
-            password = ''
+            username = project.repoUser
+            password = project.repoPassword
         }
     }
 }
